@@ -8,4 +8,4 @@ export const RestaurantsPage = ({ restaurants }) => {
             <Restaurants restaurants={restaurants} />
         </div>
     );
-}
+};

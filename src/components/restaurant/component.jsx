@@ -1,18 +1,15 @@
+import { Menu } from '../menu/component';
+import { Reviews } from '../reviews/component';
+
 export function Restaurant({ restaurant }) {
-    //console.log(restaurant);
-    return (
+   if (!restaurant) {
+      return;
+   }
+   return (
       <>
-        <div>
-            RestaurantName: { restaurant.name },
-        </div>
-        <div>
-            Меню:
-            <ul>{ restaurant.menu.map((menu) => (<li key={menu.id}>{menu.name}</li>))}</ul>
-        </div>
-        <div>
-            Отзывы:
-            <ul>{ restaurant.reviews.map((review) => (<li key={review.id}>{review.text}</li>))}</ul>
-        </div>
+         <h3>{restaurant.name}</h3>
+         <Menu dishes={restaurant.menu} />
+         <Reviews reviews={restaurant.reviews} /> 
       </>
-    );
+   );
 }

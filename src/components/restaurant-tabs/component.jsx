@@ -1,11 +1,11 @@
-import { RestaurantTab } from '../restaurant-tab/component';
+import { Tab } from '../tab/component';
 
 export const RestaurantTabs = ({restaurants}) => {
     return (
         <div>
             { restaurants.map((restaurant) => (
-                <RestaurantTab key={restaurant.id} name={restaurant.name} />
+                <Tab key={restaurant.id}>{restaurant.name}</Tab>
             ))}
         </div>
     );
-}
+};
