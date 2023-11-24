@@ -1,10 +1,10 @@
 import { Tab } from '../tab/component';
 
-export const RestaurantTabs = ({restaurants}) => {
+export const RestaurantTabs = ({restaurants, onRestaurantSelect}) => {
     return (
         <div>
-            { restaurants.map((restaurant) => (
-                <Tab key={restaurant.id}>{restaurant.name}</Tab>
+            { restaurants.map(({ id, name }) => (
+                <Tab key={id} onTabClick={() => onRestaurantSelect(name)}>{name}</Tab>
             ))}
         </div>
     );
