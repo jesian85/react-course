@@ -5,11 +5,13 @@ const COUNTER_MAX = 5;
 
 export const Counter = () => {
     const [counter, setCounter] = useState(COUNTER_MIN);
-    const increase = () => setCounter(c => c < COUNTER_MAX ? c + 1 : COUNTER_MAX);
-    const decrease = () => setCounter(c => c > COUNTER_MIN ? c - 1 : COUNTER_MIN);
+    const increase = () => { if (counter < COUNTER_MAX) setCounter(c => c + 1); };
+    const decrease = () => { if (counter > COUNTER_MIN) setCounter(c => c - 1); };
     return (
         <>
-            <button onClick={decrease}>-</button>{counter}<button onClick={increase}>+</button>
+            <button onClick={decrease}>-</button>
+            {counter}
+            <button onClick={increase}>+</button>
         </>
     );
 };
