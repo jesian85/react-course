@@ -3,15 +3,15 @@ import { Restaurant } from '../../components/restaurant/component';
 import { useState } from 'react';
 
 export const RestaurantsPage = ({ restaurants }) => {
-    const [selectedRestaurant, setSelectedRestaurant] = useState();
+    const [restaurantIndex, setRestaurantIndex] = useState(-1);
     if (!restaurants.length) {
         return null;
     }
-    const restaurant = restaurants.find(({ name }) => name === selectedRestaurant);
+    const restaurant = restaurants[restaurantIndex];
     return ( 
         <div>
-            <RestaurantTabs restaurants={restaurants} onRestaurantSelect={setSelectedRestaurant} />
-            {restaurant !== undefined && <Restaurant restaurant={restaurant} />}
+            <RestaurantTabs restaurants={restaurants} onTabClick={setRestaurantIndex} />
+            {restaurant && <Restaurant restaurant={restaurant} />}
         </div>
     );
 };
