@@ -1,0 +1,102 @@
+$color: #ff7f82;//hsl(230, 60%, 60%);
+
+.counterValue {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    width: 30px;
+}
+
+.counterButton {
+    color: var(--color);
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+  
+    border-width: 4px;
+    border-style: solid; 
+    padding: 10px 64px;
+    border-radius: 8px;
+    font-size: 18px;
+
+    &.hover {
+        background-color: var(--background-color-hover);
+    }
+    &.active {
+        background-color: var(--background-color-active);
+    }
+    &.disabled {
+        color: var(--color-disabled);
+        background-color: var(--background-color-disabled);
+        border-color: var(--border-color-disabled);
+    }
+}
+
+.primary {
+    --color: hsl(0, 0%, 100%);
+    --background-color: hsl(230, 60%, 50%);
+    --border-color: white;
+    &:hover {
+        --background-color-hover: hsl(230, 60%, 55%);
+    }
+    &.active {
+        --background-color-active: #{$color}
+    }
+    &.disabled {
+        --color-disabled: hsl(0, 0%, 70%);//hsl(0, 0%, 100%);
+        --background-color-disabled: hsl(0, 0%, 63%);
+        --border-color-disabled: hsl(0, 0%, 63%);
+    }
+}
+
+.secondary {
+    --color: hsl(230, 60%, 50%);
+    --background-color: hsl(0, 0%, 100%);
+    --border-color: #{$color};
+    &:hover {
+        --background-color-hover: hsl(230, 55%, 80%);
+    }
+    &.active {
+        --background-color-active: hsl(230, 55%, 85%);
+    }
+    &.disabled {
+        --color-disabled: hsl(0, 0%, 63%);
+        --background-color-disabled: hsl(0, 0%, 100%);
+        --border-color-disabled: hsl(0, 0%, 63%);
+    }
+}
+
+.small {
+    padding: 0.25rem 0.5rem;
+    font-size: .875rem;
+    line-height: 1;
+    border-radius: 0.2rem;
+}
+
+.medium {
+    padding: 0.3rem 0.6rem;
+    font-size: 1rem;
+    line-height: 1.12;
+    border-radius: 0.4rem;
+}
+
+.large {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+
+.val-small {
+    font-size: 1rem;
+    width: 30px;
+}
+
+.val-medium {
+    font-size: 1.25rem;
+    width: 40px;
+}
+
+.val-large {
+    font-size: 1.5rem;
+    width: 50px;
+}

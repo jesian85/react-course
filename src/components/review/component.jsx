@@ -1,6 +1,6 @@
-export const Review = ({ review }) => {
+export const Review = ({ review, className }) => {
     if (!review) {
         return;
     }
-    return <div>{review.text}</div>;
+    return <div className={className}>{review.text}</div>;
 };
