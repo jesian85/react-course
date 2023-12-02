@@ -1,5 +1,6 @@
 import { Counter } from '../counter/component';
 import { useEffect, useReducer } from 'react';
+import styles from './styles.module.css';
 
 const SET_NAME = 'setName';
 const SET_TEXT = 'setText';
@@ -42,27 +43,31 @@ export const ReviewForm = ({ restaurantId }) => {
         dispatch({ type: RESET_STATE });
     }, [restaurantId]);
     return (
-        <div>
-            <div>
-                <label htmlFor='name'>Имя</label>
+        <div className={styles.reviewForm}>
+            <div className={styles.inputContainer}>
+                <label htmlFor='name' className={styles.reviewLabel}>Имя</label>
                 <input
                   id="name"
                   type="text"
                   value={formValue.name}
-                  onChange={(e) => dispatch({ type: SET_NAME, payload: e.target.value })} />
+                  onChange={(e) => dispatch({ type: SET_NAME, payload: e.target.value })}
+                  className={styles.input} />
             </div>
-            <div>
-                <label htmlFor='text'>Текст</label>
-                <input
+            <div className={styles.inputContainer}>
+                <label htmlFor='text' className={styles.reviewLabel}>Текст</label>
+                <textarea
                   id="text"
                   type="text"
+                  rows="5"
                   value={formValue.text}
-                  onChange={(e) => dispatch({ type: SET_TEXT, payload: e.target.value })} />
+                  onChange={(e) => dispatch({ type: SET_TEXT, payload: e.target.value })}
+                  className={styles.input} />
             </div>
-            <div>
+            <div className={styles.counterContainer}>
                 <Counter value={formValue.counter}
                     decrease={() => dispatch({ type: DECREASE_COUNTER })}
-                    increase={() => dispatch({ type: INCREASE_COUNTER })} min={1} max={5} />
+                    increase={() => dispatch({ type: INCREASE_COUNTER })} 
+                    className={styles.counter} type='primary' size='large' min={1} max={5} />
             </div>
         </div>
     );

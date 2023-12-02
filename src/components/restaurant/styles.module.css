@@ -1,0 +1,23 @@
+.restaurant {
+    height: 100%;
+}
+
+.restaurantName {
+    font-family: 'Oswald', sans-serif;
+    color: #ff7f82;
+    font-size: 2vw;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.menu,
+.reviews
+{
+    margin-bottom: 20px;
+}
+
+hr {
+	width: 90%;
+}

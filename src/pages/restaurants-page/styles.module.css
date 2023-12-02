@@ -1,0 +1,13 @@
+.restaurantPage {
+    height: 100%;
+    width: 50%;
+    background-color: silver;
+}
+
+.restaurantTabs {
+    margin: 0;
+}
+
+.restaurant {
+    margin-bottom: 0;
+}

@@ -1,0 +1,33 @@
+.reviews {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0px;
+}
+
+.reviewsHeader {
+    color: #ff7f82;
+    margin: 10px;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.list {
+    list-style: none;
+    border-left: 10px solid #FC7574;
+    padding: 0;
+    font-family: "Lucida Sans";
+    margin: 0;
+}
+
+.list li {padding: 10px;}
+.list li:nth-child(odd) {background: #E1F1FF;}
+.list li:nth-child(even) {background: white;}
+
+.review {
+    margin-bottom: 16px;
+}
