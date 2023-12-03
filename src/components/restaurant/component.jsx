@@ -16,7 +16,7 @@ export function Restaurant({ restaurant, className }) {
          <hr/>
          <Reviews reviews={restaurant.reviews} className={styles.reviews} />
          <hr/>
-         <ReviewForm restaurantId={restaurant.id} />
+         <ReviewForm restaurantId={restaurant.id} className={styles.reviewForm} />
       </div>
    );
 }
