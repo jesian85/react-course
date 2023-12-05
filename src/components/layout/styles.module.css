@@ -1,0 +1,16 @@
+.root {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+    width: 50%;
+    background-color: silver;
+}
+
+.header {
+    /* position: sticky; */
+    top: 0;
+}
+
+.footer {
+    bottom: 0;
+}

@@ -1,16 +1,19 @@
+import { useTheme } from '../theme/hooks';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
 
 export const Counter = ({ value, increase, decrease, className, type='primary', size='small', min = 0, max = 5 }) => {
+    const { theme } = useTheme();
     const disableMinusButton = value <= min;
     const disablePlusButton = value >= max;
     return (
         <div className={classNames(className, styles.counter)}>
-            <div>
+            {/* <div> */}
                 <button
                     className={classNames(
                         styles.counterButton,
                         className,
+                        styles[theme.themeName],
                         styles[size],
                         styles[type],
                         {
@@ -23,6 +26,7 @@ export const Counter = ({ value, increase, decrease, className, type='primary', 
                     className={classNames(
                         styles.counterButton,
                         className,
+                        styles[theme.themeName],
                         styles[size],
                         styles[type],
                         {
@@ -30,7 +34,7 @@ export const Counter = ({ value, increase, decrease, className, type='primary', 
                             [styles.disabled]: disablePlusButton
                         }
                     )} onClick={increase} disabled={disablePlusButton}>+</button>
-            </div>
+            {/* </div> */}
         </div>
     );
 };

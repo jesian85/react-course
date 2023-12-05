@@ -1,5 +1,5 @@
 .restaurant {
-    height: 100%;
+    height: auto;
 }
 
 .restaurantName {
@@ -9,7 +9,7 @@
     font-weight: 300;
     text-transform: uppercase;
     text-align: center;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .menu,
@@ -17,6 +17,10 @@
 {
     margin-bottom: 20px;
 }
+
+.reviewForm {
+    margin: 10px auto;
+}    
 
 hr {
 	width: 90%;

@@ -1,0 +1,11 @@
+.root {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    background-color: #5ba7f8;
+}
+
+.button {
+    margin-left: 10px;
+}

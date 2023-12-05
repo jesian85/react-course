@@ -1,6 +1,7 @@
 import { Counter } from '../counter/component';
 import { useEffect, useReducer } from 'react';
 import styles from './styles.module.css';
+import classNames from 'classnames';
 
 const SET_NAME = 'setName';
 const SET_TEXT = 'setText';
@@ -37,13 +38,13 @@ const reducer = (state, action) => {
     }
 };
 
-export const ReviewForm = ({ restaurantId }) => {
+export const ReviewForm = ({ restaurantId, className }) => {
     const [formValue, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE);
     useEffect(() => {
         dispatch({ type: RESET_STATE });
     }, [restaurantId]);
     return (
-        <div className={styles.reviewForm}>
+        <div className={classNames(styles.reviewForm, className)}>
             <div className={styles.inputContainer}>
                 <label htmlFor='name' className={styles.reviewLabel}>Имя</label>
                 <input

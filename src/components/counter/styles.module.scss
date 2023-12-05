@@ -1,7 +1,27 @@
-$color: #ff7f82;//hsl(230, 60%, 60%);
+$pr-color-light: hsl(0, 0%, 100%);
+$pr-bg-color-light: hsl(230, 60%, 50%);
+$pr-border-color-light: white;
+$pr-bg-color-hr-light: hsl(230, 60%, 55%);
+$pr-bg-color-active-light: #ff7f82;
+$pr-color-disabled-light: hsl(0, 0%, 70%);
+$pr-bg-color-disabled-light: hsl(0, 0%, 63%);
+$pr-border-color-disabled-light: hsl(0, 0%, 63%);
+
+// $pr-color-dark: darken($pr-color-light, 50%);
+// $pr-bg-color-dark: darken($pr-bg-color-light, 50%);
+$pr-border-color-dark: grey;
+// $pr-bg-color-hr-dark: darken($pr-bg-color-hr-light, 50%);
+// $pr-bg-color-active-dark: darken($pr-bg-color-light, 50%);
+
+$sec-color-light: hsl(230, 60%, 50%);
+$sec-bg-color-light: hsl(0, 0%, 100%);
+$sec-border-color-light: #ff7f82;
+$sec-bg-color-active-light: hsl(230, 55%, 85%);
+$sec-color-disabled-light: hsl(0, 0%, 63%);
+$sec-bg-color-disabled-light: hsl(0, 0%, 100%);
+$sec-border-color-disabled-light: hsl(0, 0%, 63%);
 
 .counterValue {
-    display: inline-block;
     text-align: center;
     vertical-align: middle;
     width: 30px;
@@ -11,14 +31,9 @@ $color: #ff7f82;//hsl(230, 60%, 60%);
     color: var(--color);
     background-color: var(--background-color);
     border-color: var(--border-color);
-  
-    border-width: 4px;
-    border-style: solid; 
-    padding: 10px 64px;
-    border-radius: 8px;
-    font-size: 18px;
+    border-style: solid;
 
-    &.hover {
+    &:hover {
         background-color: var(--background-color-hover);
     }
     &.active {
@@ -31,59 +46,98 @@ $color: #ff7f82;//hsl(230, 60%, 60%);
     }
 }
 
+.primary.light,
 .primary {
-    --color: hsl(0, 0%, 100%);
-    --background-color: hsl(230, 60%, 50%);
-    --border-color: white;
+    --color: #{$pr-color-light};
+    --background-color: #{$pr-bg-color-light};
+    --border-color: #{$pr-border-color-light};
     &:hover {
-        --background-color-hover: hsl(230, 60%, 55%);
+        --background-color-hover: #{$pr-bg-color-hr-light};
     }
     &.active {
-        --background-color-active: #{$color}
+        --background-color-active: #{$pr-bg-color-active-light};
     }
     &.disabled {
-        --color-disabled: hsl(0, 0%, 70%);//hsl(0, 0%, 100%);
-        --background-color-disabled: hsl(0, 0%, 63%);
-        --border-color-disabled: hsl(0, 0%, 63%);
+        --color-disabled: #{$pr-color-disabled-light};
+        --background-color-disabled: #{$pr-bg-color-disabled-light};
+        --border-color-disabled: #{$pr-border-color-disabled-light};
     }
 }
 
+.primary.dark {
+    --color: #{darken($pr-color-light, 50%)};
+    --background-color: #{darken($pr-bg-color-light, 50%)};
+    --border-color: #{$pr-border-color-dark};
+    &:hover {
+        --background-color-hover: #{darken($pr-bg-color-hr-light, 50%)};
+    }
+    &.active {
+        --background-color-active: #{darken($pr-bg-color-light, 30%)};
+    }
+    &.disabled {
+        --color-disabled: #{darken($pr-color-disabled-light, 50%)};
+        --background-color-disabled: #{darken($pr-bg-color-disabled-light, 10%)};
+        --border-color-disabled: #{darken($pr-border-color-disabled-light, 50%)};
+    }
+}
+
+.secondary.light,
 .secondary {
-    --color: hsl(230, 60%, 50%);
-    --background-color: hsl(0, 0%, 100%);
-    --border-color: #{$color};
+    --color: #{$sec-color-light};
+    --background-color: #{$sec-bg-color-light};
+    --border-color: #{$sec-border-color-light};
     &:hover {
         --background-color-hover: hsl(230, 55%, 80%);
     }
     &.active {
-        --background-color-active: hsl(230, 55%, 85%);
+        --background-color-active: #{$sec-bg-color-active-light};
     }
     &.disabled {
-        --color-disabled: hsl(0, 0%, 63%);
-        --background-color-disabled: hsl(0, 0%, 100%);
-        --border-color-disabled: hsl(0, 0%, 63%);
+        --color-disabled: #{$sec-color-disabled-light};
+        --background-color-disabled: #{$sec-bg-color-disabled-light};
+        --border-color-disabled: #{$sec-border-color-disabled-light};
+    }
+}
+
+.secondary.dark {
+    --color: #{lighten($sec-color-light, 10%)};
+    --background-color: #{darken($sec-bg-color-light, 50%)};
+    --border-color: #{darken($sec-border-color-light, 50%)};
+    &:hover {
+        --background-color-hover: hsl(230, 55%, 80%);
+    }
+    &.active {
+        --background-color-active: #{darken($sec-bg-color-active-light, 50%)};
+    }
+    &.disabled {
+        --color-disabled: #{darken($sec-color-disabled-light, 50%)};
+        --background-color-disabled: #{darken($sec-bg-color-disabled-light, 50%)};
+        --border-color-disabled: #{darken($sec-border-color-disabled-light, 50%)};
     }
 }
 
 .small {
-    padding: 0.25rem 0.5rem;
-    font-size: .875rem;
-    line-height: 1;
+    font-size: 1em;
+    border-width: 2px;
     border-radius: 0.2rem;
+    width: 1.75rem;
+    height: 1.75rem;
 }
 
 .medium {
-    padding: 0.3rem 0.6rem;
-    font-size: 1rem;
-    line-height: 1.12;
+    font-size: 1.25em;
+    border-width: 3px;
     border-radius: 0.4rem;
+    width: 2.25rem;
+    height: 2.25rem;
 }
 
 .large {
-    padding: 0.5rem 1rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
+    font-size: 1.5em;
+    border-width: 4px;
     border-radius: 0.3rem;
+    width: 3rem;
+    height: 3rem;
 }
 
 .val-small {
@@ -92,7 +146,7 @@ $color: #ff7f82;//hsl(230, 60%, 60%);
 }
 
 .val-medium {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     width: 40px;
 }
 
