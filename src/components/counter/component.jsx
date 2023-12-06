@@ -1,4 +1,4 @@
-import { useTheme } from '../theme/hooks';
+import { useTheme } from '../../contexts/theme/hooks';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
 

@@ -3,19 +3,15 @@ import { Restaurant } from '../../components/restaurant/component';
 import { useState } from 'react';
 import styles from './styles.module.css';
 import { Layout } from '../../components/layout/component';
-import { ThemeProvider } from '../../components/theme/component';
+import { ThemeProvider } from '../../contexts/theme/component';
 
-export const RestaurantsPage = ({ restaurants }) => {
-    const [restaurantIndex, setRestaurantIndex] = useState(-1);
-    if (!restaurants.length) {
-        return null;
-    }
-    const restaurant = restaurants[restaurantIndex];
+export const RestaurantsPage = () => {
+    const [restaurantId, setRestaurantId] = useState(undefined);
     return (
         <ThemeProvider>
             <Layout className={styles.layout}>
-                <RestaurantTabs restaurants={restaurants} onTabClick={setRestaurantIndex} className={styles.restaurantTabs} />
-                {restaurant && <Restaurant restaurant={restaurant} className={styles.restaurant} />}
+                <RestaurantTabs onTabClick={setRestaurantId} className={styles.restaurantTabs} />
+                {restaurantId && <Restaurant id={restaurantId} className={styles.restaurant} />}
             </Layout>
         </ThemeProvider>
     );
