@@ -1,11 +1,8 @@
 import { Review } from '../review/component';
 import classNames from 'classnames';
 import styles from './styles.module.css';
-import { useSelector } from 'react-redux';
-import { selectReviewIdsFilteredByRestaurantId } from '../../store/features/entities/review/selectors';
 
-export const Reviews = ({ restaurantId, className }) => {
-    const reviewIds = useSelector((state) => selectReviewIdsFilteredByRestaurantId(state, restaurantId));
+export const Reviews = ({ reviewIds, className }) => {
     return (
         <div className={classNames(styles.reviews, className)}>
             <div className={styles.container}>

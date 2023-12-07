@@ -15,9 +15,9 @@ export function Restaurant({ id, className }) {
       <div className={classNames(styles.restaurant, className)}>
          <h3 className={styles.restaurantName}>{restaurant.name}</h3>
          <hr/>
-         <Menu restaurantId={restaurant.id} className={styles.menu} />
+         <Menu dishIds={restaurant.menu} className={styles.menu} />
          <hr/>
-         <Reviews restaurantId={restaurant.id} className={styles.reviews} />
+         <Reviews reviewIds={restaurant.reviews} className={styles.reviews} />
          <hr/>
          <ReviewForm restaurantId={restaurant.id} className={styles.reviewForm} />
       </div>

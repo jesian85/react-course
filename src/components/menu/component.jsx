@@ -1,11 +1,8 @@
 import { Dish } from '../dish/component';
 import classNames from 'classnames';
 import styles from './styles.module.scss';
-import { useSelector } from 'react-redux';
-import { selectDishIdsFilteredByRestaurantId } from '../../store/features/entities/dish/selectors';
 
-export const Menu = ({ restaurantId, className }) => {
-    const dishIds = useSelector((state) => selectDishIdsFilteredByRestaurantId(state, restaurantId));
+export const Menu = ({ dishIds, className }) => {
     return (
         <div className={classNames(styles.menu, className)}>
             <div className={styles.container}>
