@@ -3,8 +3,11 @@ import { Reviews } from '../reviews/component';
 import { ReviewForm } from '../../components/review-form/component';
 import classNames from 'classnames';
 import styles from './styles.module.css';
+import { useSelector } from 'react-redux';
+import { selectRestaurantById } from '../../store/features/entities/restaurant/selectors';
 
-export function Restaurant({ restaurant, className }) {
+export function Restaurant({ id, className }) {
+   const restaurant = useSelector((state) => selectRestaurantById(state, id));
    if (!restaurant) {
       return;
    }
@@ -12,9 +15,9 @@ export function Restaurant({ restaurant, className }) {
       <div className={classNames(styles.restaurant, className)}>
          <h3 className={styles.restaurantName}>{restaurant.name}</h3>
          <hr/>
-         <Menu dishes={restaurant.menu} className={styles.menu} />
+         <Menu dishIds={restaurant.menu} className={styles.menu} />
          <hr/>
-         <Reviews reviews={restaurant.reviews} className={styles.reviews} />
+         <Reviews reviewIds={restaurant.reviews} className={styles.reviews} />
          <hr/>
          <ReviewForm restaurantId={restaurant.id} className={styles.reviewForm} />
       </div>
