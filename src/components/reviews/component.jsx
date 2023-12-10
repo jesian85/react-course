@@ -1,8 +1,15 @@
 import { Review } from '../review/component';
 import classNames from 'classnames';
 import styles from './styles.module.css';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getReviews } from '../../store/features/entities/review/thunks/get-reviews';
 
-export const Reviews = ({ reviewIds, className }) => {
+export const Reviews = ({ restaurantId, reviewIds, className }) => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getReviews(restaurantId));
+    }, [dispatch, restaurantId]);
     return (
         <div className={classNames(styles.reviews, className)}>
             <div className={styles.container}>
