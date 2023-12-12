@@ -9,8 +9,9 @@ const store = configureStore({
         restaurant: restaurantSlice.reducer,
         dish: dishSlice.reducer,
         review: reviewSlice.reducer,
-        user: userSlice,
+        user: userSlice.reducer,
     },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 export default store;
