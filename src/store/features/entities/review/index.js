@@ -20,7 +20,7 @@ export const reviewSlice = createSlice({
                     state.entities
                 );
                 var ids = payload.map(({ id }) => id);
-                state.ids.push(...ids);
+                state.ids = Array.from(new Set(state.ids.concat(ids)));
                 state.status = REQUEST_STATUSES.fulfilled;
             })
             .addCase(getReviews.rejected, (state) => {

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { selectDishIds } from "../selectors";
-import { selectRestaurantById } from "../../restaurant/selectors";
+import { selectRestaurantDishIds } from "../../restaurant/selectors";
 
 export const getDishes = createAsyncThunk(
     "dish/getDishes",
@@ -20,10 +20,8 @@ export const getDishes = createAsyncThunk(
             console.log("condition dishes");
             const state = getState();
             const dishIds = selectDishIds(state);
-            if (!dishIds.length) return true;
-            const restaurant = selectRestaurantById(state, restaurantId);
-            const menu = restaurant.menu;
-            return !menu.every((dishId) => dishIds.includes(dishId));
+            const restaurantDishIds = selectRestaurantDishIds(state, restaurantId);
+            return !restaurantDishIds.every((dishId) => dishIds.includes(dishId));
         },
     }
 );
