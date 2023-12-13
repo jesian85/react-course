@@ -9,3 +9,8 @@
 .layout {
     margin: 0 auto;
 }
+
+.loading {
+    color: #ff7f82;
+    font-weight: 600;
+}
