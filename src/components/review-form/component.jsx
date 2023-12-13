@@ -1,5 +1,5 @@
 import { Counter } from '../counter/component';
-import { useEffect, useReducer } from 'react';
+import { useReducer } from 'react';
 import styles from './styles.module.css';
 import classNames from 'classnames';
 import { useCreateReviewMutation, useGetUsersQuery, useUpdateReviewMutation } from '../../store/services/api';
@@ -10,13 +10,12 @@ const DECREASE_COUNTER = 'decreaseCounter';
 const INCREASE_COUNTER = 'increaseCounter';
 const COUNTER_STEP = .5;
 const RESET_STATE = 'resetState';
-const SET_FORM = 'setForm';
 
 const DEFAULT_FORM_VALUE = {
     name: '',
     text: '',
     rating: 1,
-    reviewId: undefined
+    userId: undefined,
 };
 
 const reducer = (state, action) => {
@@ -36,34 +35,23 @@ const reducer = (state, action) => {
             return { ...state, rating: state.rating - COUNTER_STEP };
         case RESET_STATE:
             return DEFAULT_FORM_VALUE;
-        case SET_FORM:
-            return {
-                ...state,
-                name: action.payload.name,
-                text: action.payload.text,
-                rating: action.payload.rating,
-                reviewId: action.payload.id,
-            };
         default:
             return state;
     }
 };
 
-export const ReviewForm = ({ restaurantId, review, className }) => {
-    const [formValue, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE);
+export const ReviewForm = ({ restaurantId, className, review = DEFAULT_FORM_VALUE, editMode = false }) => {
+    const [formValue, dispatch] = useReducer(reducer, review);
     const [createReview] = useCreateReviewMutation();
     const [updateReview] = useUpdateReviewMutation();
-    useEffect(() => {
-        dispatch({ type: RESET_STATE });
-    }, [restaurantId]);
+    // useEffect(() => {
+    //     dispatch({ type: RESET_STATE });
+    // }, [restaurantId]);
     const { data: user } = useGetUsersQuery(undefined, {
         selectFromResult: (result) => {
             return { ...result, data: result?.data?.find((user) => user) };
         }
     });
-    if (review?.id !== formValue.reviewId) {
-        dispatch({ type: SET_FORM, payload: { ...review, name: review.name ? review.name : user.name } });
-    }
     return (
         <div className={classNames(styles.reviewForm, className)}>
             <div className={styles.inputContainer}>
@@ -94,10 +82,10 @@ export const ReviewForm = ({ restaurantId, review, className }) => {
             <div className={styles.buttonContainer}>
                 <button className={styles.button}
                     onClick={() => {
-                        if (review) {
+                        if (editMode) {
                             updateReview({
                                 reviewId: review.id,
-                                review: { ...formValue, userId: user.id }
+                                review: formValue
                             });
                         } else {
                             createReview({
