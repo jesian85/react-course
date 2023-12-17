@@ -1,8 +1,7 @@
 import classNames from 'classnames';
 import styles from './styles.module.css';
 import { ReviewFormContainer } from '../review-form/container';
-import { MenuContainer } from '../menu/container';
-import { ReviewsContainer } from '../reviews/container';
+import { NavLink, Outlet } from 'react-router-dom';
 
 export function Restaurant({ restaurant, className }) {
    if (!restaurant) {
@@ -12,9 +11,17 @@ export function Restaurant({ restaurant, className }) {
       <div className={classNames(styles.restaurant, className)}>
          <h3 className={styles.restaurantName}>{restaurant.name}</h3>
          <hr/>
-         <MenuContainer restaurantId={restaurant.id} className={styles.menu} />
-         <hr/>
-         <ReviewsContainer restaurantId={restaurant.id} className={styles.reviews} />
+         <div className={styles.menu}>
+            <NavLink to="menu" className={({ isActive }) =>
+               classNames(styles.link, {
+                  [styles.active]: isActive
+               })}>Меню</NavLink>
+            <NavLink to="reviews" className={({ isActive }) =>
+               classNames(styles.link, {
+                  [styles.active]: isActive
+               })}>Отзывы</NavLink>
+         </div>
+         <Outlet />
          <hr/>
          <ReviewFormContainer restaurantId={restaurant.id} className={styles.reviewForm} />
       </div>
