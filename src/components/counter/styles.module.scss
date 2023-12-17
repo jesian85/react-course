@@ -33,11 +33,14 @@ $sec-border-color-disabled-light: hsl(0, 0%, 63%);
     border-color: var(--border-color);
     border-style: solid;
 
-    &:hover {
+    &.active:hover {
         background-color: var(--background-color-hover);
     }
     &.active {
         background-color: var(--background-color-active);
+    }
+    &.disabled:hover {
+        background-color: var(--background-color-hover);
     }
     &.disabled {
         color: var(--color-disabled);
@@ -50,17 +53,20 @@ $sec-border-color-disabled-light: hsl(0, 0%, 63%);
 .primary {
     --color: #{$pr-color-light};
     --background-color: #{$pr-bg-color-light};
-    --border-color: #{$pr-border-color-light};
-    &:hover {
-        --background-color-hover: #{$pr-bg-color-hr-light};
+    --border-color: #{darken($pr-border-color-light, 15%)};
+    &.active:hover {
+        --background-color-hover: #{darken($pr-bg-color-active-light, 10%)}; //$pr-bg-color-hr-light
     }
     &.active {
         --background-color-active: #{$pr-bg-color-active-light};
     }
+    &.disabled:hover {
+        --background-color-hover: #{lighten($pr-bg-color-disabled-light, 20%)};
+    }
     &.disabled {
-        --color-disabled: #{$pr-color-disabled-light};
-        --background-color-disabled: #{$pr-bg-color-disabled-light};
-        --border-color-disabled: #{$pr-border-color-disabled-light};
+        --color-disabled: #{lighten($pr-color-disabled-light, 10%)};
+        --background-color-disabled: #{lighten($pr-bg-color-disabled-light, 10%)};
+        --border-color-disabled: #{lighten($pr-border-color-disabled-light, 5%)};
     }
 }
 
@@ -68,16 +74,19 @@ $sec-border-color-disabled-light: hsl(0, 0%, 63%);
     --color: #{darken($pr-color-light, 50%)};
     --background-color: #{darken($pr-bg-color-light, 50%)};
     --border-color: #{$pr-border-color-dark};
-    &:hover {
-        --background-color-hover: #{darken($pr-bg-color-hr-light, 50%)};
+    &.active:hover {
+        --background-color-hover: #{darken($pr-bg-color-hr-light, 30%)};
     }
     &.active {
-        --background-color-active: #{darken($pr-bg-color-light, 30%)};
+        --background-color-active: #{darken($pr-bg-color-light, 20%)};
+    }
+    &.disabled:hover {
+        --background-color-hover: #{darken($pr-bg-color-disabled-light, 30%)};
     }
     &.disabled {
         --color-disabled: #{darken($pr-color-disabled-light, 50%)};
         --background-color-disabled: #{darken($pr-bg-color-disabled-light, 10%)};
-        --border-color-disabled: #{darken($pr-border-color-disabled-light, 50%)};
+        --border-color-disabled: #{darken($pr-border-color-disabled-light, 20%)};
     }
 }
 
@@ -86,11 +95,14 @@ $sec-border-color-disabled-light: hsl(0, 0%, 63%);
     --color: #{$sec-color-light};
     --background-color: #{$sec-bg-color-light};
     --border-color: #{$sec-border-color-light};
-    &:hover {
+    &.active:hover {
         --background-color-hover: hsl(230, 55%, 80%);
     }
     &.active {
         --background-color-active: #{$sec-bg-color-active-light};
+    }
+    &.disabled:hover {
+        --background-color-hover: #{lighten(grey, 40%)};
     }
     &.disabled {
         --color-disabled: #{$sec-color-disabled-light};
@@ -103,16 +115,19 @@ $sec-border-color-disabled-light: hsl(0, 0%, 63%);
     --color: #{lighten($sec-color-light, 10%)};
     --background-color: #{darken($sec-bg-color-light, 50%)};
     --border-color: #{darken($sec-border-color-light, 50%)};
-    &:hover {
-        --background-color-hover: hsl(230, 55%, 80%);
+    &.active:hover {
+        --background-color-hover: #{darken($sec-bg-color-active-light, 50%)};//hsl(230, 55%, 80%);
     }
     &.active {
-        --background-color-active: #{darken($sec-bg-color-active-light, 50%)};
+        --background-color-active: #{darken($sec-bg-color-active-light, 40%)};
+    }
+    &.disabled:hover {
+        --background-color-hover: #{darken($sec-bg-color-disabled-light, 50%)};
     }
     &.disabled {
         --color-disabled: #{darken($sec-color-disabled-light, 50%)};
-        --background-color-disabled: #{darken($sec-bg-color-disabled-light, 50%)};
-        --border-color-disabled: #{darken($sec-border-color-disabled-light, 50%)};
+        --background-color-disabled: #{darken($sec-bg-color-disabled-light, 40%)};
+        --border-color-disabled: #{darken($sec-border-color-disabled-light, 20%)};
     }
 }
 

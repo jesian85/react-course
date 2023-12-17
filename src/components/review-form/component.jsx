@@ -2,7 +2,6 @@ import { Counter } from '../counter/component';
 import { useReducer } from 'react';
 import styles from './styles.module.css';
 import classNames from 'classnames';
-import { useCreateReviewMutation, useGetUsersQuery, useUpdateReviewMutation } from '../../store/services/api';
 
 const SET_NAME = 'setName';
 const SET_TEXT = 'setText';
@@ -15,7 +14,6 @@ const DEFAULT_FORM_VALUE = {
     name: '',
     text: '',
     rating: 1,
-    userId: undefined,
 };
 
 const reducer = (state, action) => {
@@ -40,18 +38,8 @@ const reducer = (state, action) => {
     }
 };
 
-export const ReviewForm = ({ restaurantId, className, review = DEFAULT_FORM_VALUE, editMode = false }) => {
+export const ReviewForm = ({ className, onSaveClick, review = DEFAULT_FORM_VALUE }) => {
     const [formValue, dispatch] = useReducer(reducer, review);
-    const [createReview] = useCreateReviewMutation();
-    const [updateReview] = useUpdateReviewMutation();
-    // useEffect(() => {
-    //     dispatch({ type: RESET_STATE });
-    // }, [restaurantId]);
-    const { data: user } = useGetUsersQuery(undefined, {
-        selectFromResult: (result) => {
-            return { ...result, data: result?.data?.find((user) => user) };
-        }
-    });
     return (
         <div className={classNames(styles.reviewForm, className)}>
             <div className={styles.inputContainer}>
@@ -80,20 +68,7 @@ export const ReviewForm = ({ restaurantId, className, review = DEFAULT_FORM_VALU
                     className={styles.counter} type='primary' size='large' min={1} max={5} />
             </div>
             <div className={styles.buttonContainer}>
-                <button className={styles.button}
-                    onClick={() => {
-                        if (editMode) {
-                            updateReview({
-                                reviewId: review.id,
-                                review: formValue
-                            });
-                        } else {
-                            createReview({
-                                restaurantId,
-                                newReview: { ...formValue, userId: user.id }
-                            });
-                        }
-                }}> Сохранить</button>
+                <button className={styles.button} onClick={() => onSaveClick(formValue)}>Сохранить</button>
             </div>
         </div>
     );

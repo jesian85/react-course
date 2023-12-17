@@ -4,15 +4,9 @@ import { useState } from 'react';
 import styles from './styles.module.css';
 import { Layout } from '../../components/layout/component';
 import { ThemeProvider } from '../../contexts/theme/component';
-import { useGetRestaurantsQuery, useGetUsersQuery } from '../../store/services/api';
 
-export const RestaurantsPage = () => {
+export const RestaurantsPage = ({ restaurants }) => {
     const [restaurantIndex, setRestaurantIndex] = useState(undefined);
-    const { data: restaurants, isFetching } = useGetRestaurantsQuery();
-    const { isFetching: isUsersFetching }  = useGetUsersQuery();
-    if (isFetching && isUsersFetching) {
-        return <div className={styles.loading}>Загрузка...</div>;
-    }
     const restaurant = restaurants[restaurantIndex];
     return (
         <ThemeProvider>
