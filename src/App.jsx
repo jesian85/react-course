@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import store from './store';
 import { RestaurantsPageContainer } from './pages/restaurants-page/container';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/layout/component';
 import { ThemeProvider } from './contexts/theme/component';
 import styles from './styles/app.module.css';
@@ -21,7 +21,7 @@ export const App = () => {
                             <Route index element={<MainPage />} />
                             <Route path="restaurants" element={<RestaurantsPageContainer />}>
                                 <Route path=":restaurantId" element={<RestaurantPage />}>
-                                    <Route index element={<MenuPage />} />
+                                    <Route index element={<Navigate to="menu" replace />} />
                                     <Route path="menu" element={<MenuPage />} />
                                     <Route path="reviews" element={<ReviewsPage />} />
                                 </Route>
