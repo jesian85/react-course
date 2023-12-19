@@ -25,3 +25,32 @@
 hr {
 	width: 90%;
 }
+
+.loading {
+    color: #ff7f82;
+    font-weight: 600;
+    text-align: center;
+}
+
+.menu {
+    width: 90%;
+    margin: 20px auto; 
+    .link:first-child {
+        margin-right: 10px;
+    }
+}
+
+.link {
+    color: #ff7f82;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.active {
+    color: red;
+    font-weight: 600;
+    cursor: default;
+    font-size: 18px;
+}

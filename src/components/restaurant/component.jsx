@@ -1,25 +1,29 @@
-import { Menu } from '../menu/component';
-import { Reviews } from '../reviews/component';
-import { ReviewForm } from '../../components/review-form/component';
 import classNames from 'classnames';
 import styles from './styles.module.css';
-import { useSelector } from 'react-redux';
-import { selectRestaurantById } from '../../store/features/entities/restaurant/selectors';
+import { ReviewFormContainer } from '../review-form/container';
+import { NavLink, Outlet } from 'react-router-dom';
 
-export function Restaurant({ id, className }) {
-   const restaurant = useSelector((state) => selectRestaurantById(state, id));
+export function Restaurant({ restaurant, className }) {
    if (!restaurant) {
-      return;
+      return null;
    }
    return (
       <div className={classNames(styles.restaurant, className)}>
          <h3 className={styles.restaurantName}>{restaurant.name}</h3>
          <hr/>
-         <Menu restaurantId={restaurant.id} dishIds={restaurant.menu} className={styles.menu} />
+         <div className={styles.menu}>
+            <NavLink to="menu" className={({ isActive }) =>
+               classNames(styles.link, {
+                  [styles.active]: isActive
+               })}>Меню</NavLink>
+            <NavLink to="reviews" className={({ isActive }) =>
+               classNames(styles.link, {
+                  [styles.active]: isActive
+               })}>Отзывы</NavLink>
+         </div>
+         <Outlet />
          <hr/>
-         <Reviews restaurantId={restaurant.id} reviewIds={restaurant.reviews} className={styles.reviews} />
-         <hr/>
-         <ReviewForm restaurantId={restaurant.id} className={styles.reviewForm} />
+         <ReviewFormContainer restaurantId={restaurant.id} className={styles.reviewForm} />
       </div>
    );
 }

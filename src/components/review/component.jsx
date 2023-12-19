@@ -1,10 +1,20 @@
-import { useSelector } from "react-redux";
-import { selectReviewById } from "../../store/features/entities/review/selectors";
+import { useState } from "react";
+import styles from './styles.module.css';
+import classNames from "classnames";
+import { ReviewEditFormContainer } from "../review-edit-form/container";
 
-export const Review = ({ id, className }) => {
-    const review = useSelector((state) => selectReviewById(state, id));
+export const Review = ({ review, className }) => {
+    const [editMode, setEditMode] = useState(false);
     if (!review) {
-        return;
+        return null;
     }
-    return <div className={className}>{review.text}</div>;
+    return (
+        <>
+            <div className={classNames(styles.root, className)}>
+                <div className={styles.text}>{review.text}</div>
+                <button className={styles.editButton} onClick={() => setEditMode((editMode) => !editMode)}>{!editMode ? 'Изменить' : 'Скрыть'}</button>
+            </div>
+            {editMode && <ReviewEditFormContainer review={review} className={styles.reviewForm} />}
+        </>
+    );  
 };

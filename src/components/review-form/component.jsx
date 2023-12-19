@@ -1,5 +1,5 @@
 import { Counter } from '../counter/component';
-import { useEffect, useReducer } from 'react';
+import { useReducer } from 'react';
 import styles from './styles.module.css';
 import classNames from 'classnames';
 
@@ -13,7 +13,7 @@ const RESET_STATE = 'resetState';
 const DEFAULT_FORM_VALUE = {
     name: '',
     text: '',
-    counter: 1,
+    rating: 1,
 };
 
 const reducer = (state, action) => {
@@ -23,14 +23,14 @@ const reducer = (state, action) => {
                 ...state,
                 name: action.payload,
                 text : DEFAULT_FORM_VALUE.text,
-                counter: DEFAULT_FORM_VALUE.counter,
+                rating: DEFAULT_FORM_VALUE.rating,
              };
         case SET_TEXT:
             return { ...state, text: action.payload };
         case INCREASE_COUNTER:
-            return { ...state, counter: state.counter + COUNTER_STEP };
+            return { ...state, rating: state.rating + COUNTER_STEP };
         case DECREASE_COUNTER:
-            return { ...state, counter: state.counter - COUNTER_STEP };
+            return { ...state, rating: state.rating - COUNTER_STEP };
         case RESET_STATE:
             return DEFAULT_FORM_VALUE;
         default:
@@ -38,11 +38,8 @@ const reducer = (state, action) => {
     }
 };
 
-export const ReviewForm = ({ restaurantId, className }) => {
-    const [formValue, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE);
-    useEffect(() => {
-        dispatch({ type: RESET_STATE });
-    }, [restaurantId]);
+export const ReviewForm = ({ className, onSaveClick, review = DEFAULT_FORM_VALUE }) => {
+    const [formValue, dispatch] = useReducer(reducer, review);
     return (
         <div className={classNames(styles.reviewForm, className)}>
             <div className={styles.inputContainer}>
@@ -65,10 +62,13 @@ export const ReviewForm = ({ restaurantId, className }) => {
                   className={styles.input} />
             </div>
             <div className={styles.counterContainer}>
-                <Counter value={formValue.counter}
+                <Counter value={formValue.rating}
                     decrease={() => dispatch({ type: DECREASE_COUNTER })}
                     increase={() => dispatch({ type: INCREASE_COUNTER })} 
                     className={styles.counter} type='primary' size='large' min={1} max={5} />
+            </div>
+            <div className={styles.buttonContainer}>
+                <button className={styles.button} onClick={() => onSaveClick(formValue)}>Сохранить</button>
             </div>
         </div>
     );
